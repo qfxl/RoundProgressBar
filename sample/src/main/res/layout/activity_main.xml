@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ll_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <com.qfxl.view.RoundProgressBar
+        android:id="@+id/rpb_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        app:center_background="#808080"
+        app:center_text="跳过"
+        app:center_text_color="#fff"
+        app:center_text_size="14sp"
+        app:count_down_time_millis="5000"
+        app:progress_direction="forward"
+        app:sweep_start_angle="-90"
+        app:auto_start="true"
+        app:sweep_stroke_color="@color/colorPrimaryDark"
+        app:sweep_stroke_width="2dp" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
+
+    <com.qfxl.view.RoundProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        app:center_background="#808080"
+        app:center_text="跳过"
+        app:center_text_color="#fff"
+        app:center_text_size="14sp"
+        app:count_down_time_millis="5000"
+        app:progress_direction="reverse"
+        app:sweep_start_angle="-90"
+        app:sweep_stroke_color="@color/colorPrimaryDark"
+        app:sweep_stroke_width="2dp" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
+
+    <com.qfxl.view.RoundProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        app:center_background="#e8e8e8"
+        app:center_text="加载中"
+        app:center_text_color="#000"
+        app:center_text_size="20sp"
+        app:count_down_time_millis="5000"
+        app:progress_direction="forward"
+        app:sweep_start_angle="0"
+        app:sweep_stroke_color="#39aa1a"
+        app:sweep_stroke_width="2dp" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
+
+    <com.qfxl.view.RoundProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        app:center_background="#2b2c33"
+        app:center_text_color="#fff"
+        app:center_text_size="14sp"
+        app:count_down_time_millis="5000"
+        app:progress_direction="reverse"
+        app:sweep_start_angle="180"
+        app:sweep_stroke_color="@color/colorAccent"
+        app:sweep_stroke_width="2dp" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
+
+    <com.qfxl.view.RoundProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        app:center_background="#dc1717"
+        app:center_text_color="#fff"
+        app:center_text_size="14sp"
+        app:count_down_time_millis="5000"
+        app:progress_direction="forward"
+        app:sweep_start_angle="-90"
+        app:sweep_stroke_color="#179a86"
+        app:sweep_stroke_width="2dp" />
+
+</LinearLayout>
