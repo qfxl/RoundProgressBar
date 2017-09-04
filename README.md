@@ -58,7 +58,7 @@ Android圆形倒计时控件，采用Canvas绘制外加ValueAnimator实现计时
 ### 如何监听
 
 ```java
- RoundProgressBar mRoundProgressBar = (RoundProgressBar) findViewById(R.id.rpb_1);
+        RoundProgressBar mRoundProgressBar = (RoundProgressBar) findViewById(R.id.rpb_1);
         mRoundProgressBar.setProgressChangeListener(new RoundProgressBar.ProgressChangeListener() {
             @Override
             public void onFinish() {
