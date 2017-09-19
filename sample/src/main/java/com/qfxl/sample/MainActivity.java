@@ -1,8 +1,8 @@
 package com.qfxl.sample;
 
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.LinearLayout;
 
 import com.qfxl.view.RoundProgressBar;

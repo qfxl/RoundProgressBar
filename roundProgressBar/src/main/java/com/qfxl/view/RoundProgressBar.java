@@ -11,108 +11,92 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
 
 
 /**
- * 清风徐来
- * 圆形倒计时控件(提供百分比计时,固定文本计时)
+ * qfxl
+ * roundProgressBar
  */
 
 public class RoundProgressBar extends View {
     /**
-     * 绘制圆弧的画笔
+     * arcPaint
      */
     private Paint arcPaint;
-
     /**
-     * 圆弧
+     * arcRect
      */
     private RectF arcRect;
-
     /**
-     * 绘制文本的画笔
+     * textPaint
      */
     private Paint textPaint;
-
     /**
-     * 倒计时圆弧的宽度
+     * arc StrokeWidth
      */
     private int strokeWidth;
-
     /**
-     * 倒计时圆弧的颜色
+     * countDown Arc StrokeColor
      */
     private int strokeColor;
-
     /**
-     * 进度
+     * progress
      */
     private int progress;
-
     /**
-     * 倒计时时间 默认3秒
+     * countDown millis default is 3000ms
      */
     private int countDownTimeMillis;
-
     /**
-     * 中间区域绘制画笔
+     * center background paint
      */
     private Paint centerBgPaint;
-
     /**
-     * 中间区域的颜色
+     * center background
      */
     private int centerBackground;
-
     /**
-     * 中间的文字
+     * center text
      */
     private String centerText;
-
     /**
-     * 没有文字时候的占位字符
+     * placeHolder if there is none text
      */
     private String emptyText = "100%";
-
     /**
-     * 中间文字的颜色
+     * center textColor
      */
     private int centerTextColor;
-
     /**
-     * 中间文本的大小
+     * center textSize
      */
     private float centerTextSize;
-
     /**
-     * 测量文字的Rect
+     * measure text bounds
      */
     private Rect textBounds;
-
     /**
-     * 弧度开始的位置,默认顶部中间
+     * arc start angle default is -90
      */
     private int startAngle;
-
     /**
-     * 是否自动开启计时(默认true)
+     * if is auto start,default is true
      */
     private boolean isAutoStart;
-
     /**
-     * 监听progress
+     * progress change listener
      */
     private ProgressChangeListener mProgressChangeListener;
-
     /**
-     * 倒计时圆弧的方向
+     * arc sweep direction default is forward
      */
     private Direction mDirection;
     /**
-     * attr获取的direction的枚举值
+     * direction index
      */
     private int directionIndex;
     private final Direction[] mDirections = {
@@ -132,7 +116,7 @@ public class RoundProgressBar extends View {
     }
 
     /**
-     * 属性动画
+     * value animator
      */
     private ValueAnimator animator;
 
@@ -204,11 +188,11 @@ public class RoundProgressBar extends View {
     }
 
     /**
-     * 获取最小的高度 文字高度 + paddingLeft + paddingRight + 外弧的宽度 * 2
+     * getMinWidth textHeight + paddingLeft + paddingRight + arcStrokeWidth * 2
      *
-     * @param mode
-     * @param measuredSize
-     * @return
+     * @param mode mode
+     * @param measuredSize measuredSize
+     * @return minWidth
      */
     private int getMinWidth(int mode, int measuredSize) {
         int suggestSize = 0;
@@ -230,11 +214,10 @@ public class RoundProgressBar extends View {
     }
 
     /**
-     * 获取最小的高度 文字高度 + paddingBottom + paddingTop + 外弧的宽度 * 2
-     *
-     * @param mode
-     * @param measuredSize
-     * @return
+     * getMinHeight similar to {@link #getMinWidth(int, int)}.
+     * @param mode mode
+     * @param measuredSize measuredSize
+     * @return minHeight
      */
     private int getMinHeight(int mode, int measuredSize) {
         int suggestSize = 0;
@@ -259,29 +242,27 @@ public class RoundProgressBar extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         centerBgPaint.setColor(centerBackground);
-        //绘制中间文字区域的圆
+        //draw center background circle
         canvas.drawCircle(getWidth() / 2, getHeight() / 2, (getWidth() - strokeWidth * 2) / 2, centerBgPaint);
-        //绘制外圈弧线
+        //draw outside arc
         canvas.drawArc(arcRect, startAngle, (float) (3.6 * progress), false, arcPaint);
-        Paint.FontMetricsInt mFontMetrics = textPaint.getFontMetricsInt();
-        int baseLine = (int) (arcRect.centerY() - (mFontMetrics.bottom - mFontMetrics.top) / 2 - mFontMetrics.top);
-        //绘制文字
+        //draw text
         if (TextUtils.isEmpty(centerText)) {
-            canvas.drawText(progress + "%", arcRect.centerX(), baseLine, textPaint);
+            canvas.drawText(progress + "%", arcRect.centerX(), arcRect.centerY() - (textPaint.descent() + textPaint.ascent()) / 2, textPaint);
         } else {
-            canvas.drawText(centerText, arcRect.centerX(), baseLine, textPaint);
+            canvas.drawText(centerText, arcRect.centerX(), arcRect.centerY() - (textPaint.descent() + textPaint.ascent()) / 2, textPaint);
         }
     }
 
     /**
-     * 开始
+     * start
      */
     public void start() {
         initAnimator(countDownTimeMillis, mDirection);
     }
 
     /**
-     * 停止
+     * stop
      */
     public void stop() {
         if (animator != null && animator.isRunning()) {
@@ -302,10 +283,10 @@ public class RoundProgressBar extends View {
     }
 
     /**
-     * 初始化Animator
+     * init Animator
      *
-     * @param duration  持续时间
-     * @param direction 进度条方向
+     * @param duration duration
+     * @param direction sweep direction
      */
     private void initAnimator(int duration, Direction direction) {
         if (animator != null && animator.isRunning()) {
@@ -360,99 +341,102 @@ public class RoundProgressBar extends View {
     }
 
     /**
-     * 设置外弧的宽度
+     * set sweep arc strokeWidth
      *
-     * @param strokeWidth
+     * @param strokeWidth strokeWidth
      */
     public void setStrokeWidth(int strokeWidth) {
-        this.strokeWidth = strokeWidth;
+        if (strokeWidth > 0) {
+            this.strokeWidth = strokeWidth;
+        }
     }
 
     /**
-     * 设置外弧的颜色
+     * set sweep arc strokeColor
      *
-     * @param strokeColor
+     * @param strokeColor strokeColor
      */
     public void setStrokeColor(int strokeColor) {
         this.strokeColor = strokeColor;
     }
 
     /**
-     * 设置倒计时的时间
+     * set countDown millis
      *
-     * @param countDownTimeMillis
+     * @param countDownTimeMillis countDownTimeMillis
      */
     public void setCountDownTimeMillis(int countDownTimeMillis) {
         this.countDownTimeMillis = countDownTimeMillis;
     }
 
     /**
-     * 设置中间文字区域的背景色
+     * set center background (color)
      *
-     * @param centerBackground
+     * @param centerBackground centerBackground
      */
     public void setCenterBackground(int centerBackground) {
         this.centerBackground = centerBackground;
     }
 
     /**
-     * 设置中间的文本
+     * set center text
+     * if is none , then start progress text countDown(100% ~ 0% | 0 % ~ 100%)
      *
-     * @param centerText
+     * @param centerText centerText
      */
     public void setCenterText(String centerText) {
         this.centerText = centerText;
     }
 
     /**
-     * 设置中间的文本颜色
+     * set center textColor
      *
-     * @param centerTextColor
+     * @param centerTextColor centerTextColor
      */
     public void setCenterTextColor(int centerTextColor) {
         this.centerTextColor = centerTextColor;
     }
 
     /**
-     * 设置中间的文字大小
+     * set center textSize
      *
-     * @param centerTextSize
+     * @param centerTextSize centerTextSize
      */
     public void setCenterTextSize(float centerTextSize) {
         this.centerTextSize = centerTextSize;
     }
 
     /**
-     * 设置圆弧的起始位置
+     * set sweep start angle
      *
-     * @param startAngle
+     * @param startAngle start angle default is -90
      */
     public void setStartAngle(int startAngle) {
         this.startAngle = startAngle;
     }
 
     /**
-     * 设置是否自动开启计时
+     * set if is auto start
      *
-     * @param isAutoStart
+     * @param isAutoStart if is auto start
      */
     public void setAutoStart(boolean isAutoStart) {
         this.isAutoStart = isAutoStart;
     }
 
     /**
-     * 设置倒计时的监听
+     * set progressChange listener
      *
-     * @param progressChangeListener
+     * @param progressChangeListener progressChangeListener
      */
     public void setProgressChangeListener(ProgressChangeListener progressChangeListener) {
         mProgressChangeListener = progressChangeListener;
     }
 
     /**
-     * 设置方向
+     * set direction
      *
-     * @param direction
+     * @param direction sweep direction
      */
     public void setDirection(Direction direction) {
         if (direction == null) {
@@ -472,6 +456,19 @@ public class RoundProgressBar extends View {
         }
     }
 
+    /**
+     * set progress by your self
+     * @param progress progress
+     */
+    public void setProgress(int progress) {
+        if (progress > 100) {
+            progress = 100;
+        } else if (progress < 0) {
+            progress = 0;
+        }
+        this.progress = progress;
+        invalidate();
+    }
 
     private float sp2px(float inParam) {
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, inParam, getContext().getResources().getDisplayMetrics());
