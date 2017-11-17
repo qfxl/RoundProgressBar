@@ -11,15 +11,14 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
 
 
 /**
- * qfxl
  * roundProgressBar
+ * @author qfxl
  */
 
 public class RoundProgressBar extends View {
@@ -132,31 +131,27 @@ public class RoundProgressBar extends View {
         super(context, attrs, defStyleAttr);
 
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.RoundProgressBar);
-        strokeWidth = a.getDimensionPixelSize(R.styleable.RoundProgressBar_sweep_stroke_width, 5);
-        strokeColor = a.getColor(R.styleable.RoundProgressBar_sweep_stroke_color, Color.BLACK);
-        startAngle = a.getInteger(R.styleable.RoundProgressBar_sweep_start_angle, -90);
-        centerText = a.getString(R.styleable.RoundProgressBar_center_text);
-        centerTextSize = a.getDimension(R.styleable.RoundProgressBar_center_text_size, sp2px(12));
-        centerTextColor = a.getColor(R.styleable.RoundProgressBar_center_text_color, Color.BLACK);
-        centerBackground = a.getColor(R.styleable.RoundProgressBar_center_background, Color.GRAY);
-        countDownTimeMillis = a.getInteger(R.styleable.RoundProgressBar_count_down_time_millis, 3 * 1000);
-        directionIndex = a.getInt(R.styleable.RoundProgressBar_progress_direction, 0);
-        isAutoStart = a.getBoolean(R.styleable.RoundProgressBar_auto_start, true);
+        strokeWidth = a.getDimensionPixelSize(R.styleable.RoundProgressBar_rpb_sweepStrokeWidth, 5);
+        strokeColor = a.getColor(R.styleable.RoundProgressBar_rpb_sweepStrokeColor, Color.BLACK);
+        startAngle = a.getInteger(R.styleable.RoundProgressBar_rpb_sweepStartAngle, -90);
+        centerText = a.getString(R.styleable.RoundProgressBar_rpb_centerText);
+        centerTextSize = a.getDimension(R.styleable.RoundProgressBar_rpb_centerTextSize, sp2px(12));
+        centerTextColor = a.getColor(R.styleable.RoundProgressBar_rpb_centerTextColor, Color.BLACK);
+        centerBackground = a.getColor(R.styleable.RoundProgressBar_rpb_centerBackgroundColor, Color.GRAY);
+        countDownTimeMillis = a.getInteger(R.styleable.RoundProgressBar_rpb_countDownTimeInMillis, 3 * 1000);
+        directionIndex = a.getInt(R.styleable.RoundProgressBar_rpb_progressDirection, 0);
+        isAutoStart = a.getBoolean(R.styleable.RoundProgressBar_rpb_autoStart, true);
         a.recycle();
 
         arcPaint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.DITHER_FLAG);
         arcPaint.setStyle(Paint.Style.STROKE);
-        arcPaint.setStrokeWidth(strokeWidth);
-        arcPaint.setColor(strokeColor);
 
         textPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         textPaint.setTextSize(centerTextSize);
         textPaint.setTextAlign(Paint.Align.CENTER);
-        textPaint.setColor(centerTextColor);
 
         centerBgPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         centerBgPaint.setStyle(Paint.Style.FILL);
-        centerBgPaint.setColor(centerBackground);
 
         arcRect = new RectF();
         textBounds = new Rect();
@@ -190,7 +185,7 @@ public class RoundProgressBar extends View {
     /**
      * getMinWidth textHeight + paddingLeft + paddingRight + arcStrokeWidth * 2
      *
-     * @param mode mode
+     * @param mode         mode
      * @param measuredSize measuredSize
      * @return minWidth
      */
@@ -209,13 +204,15 @@ public class RoundProgressBar extends View {
             case MeasureSpec.EXACTLY:
                 suggestSize = measuredSize;
                 break;
+            default:
         }
         return suggestSize;
     }
 
     /**
      * getMinHeight similar to {@link #getMinWidth(int, int)}.
-     * @param mode mode
+     *
+     * @param mode         mode
      * @param measuredSize measuredSize
      * @return minHeight
      */
@@ -234,6 +231,7 @@ public class RoundProgressBar extends View {
             case MeasureSpec.EXACTLY:
                 suggestSize = measuredSize;
                 break;
+            default:
         }
         return suggestSize;
     }
@@ -242,6 +240,9 @@ public class RoundProgressBar extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         centerBgPaint.setColor(centerBackground);
+        textPaint.setColor(centerTextColor);
+        arcPaint.setColor(strokeColor);
+        arcPaint.setStrokeWidth(strokeWidth);
         //draw center background circle
         canvas.drawCircle(getWidth() / 2, getHeight() / 2, (getWidth() - strokeWidth * 2) / 2, centerBgPaint);
         //draw outside arc
@@ -285,7 +286,7 @@ public class RoundProgressBar extends View {
     /**
      * init Animator
      *
-     * @param duration duration
+     * @param duration  duration
      * @param direction sweep direction
      */
     private void initAnimator(int duration, Direction direction) {
@@ -444,6 +445,7 @@ public class RoundProgressBar extends View {
         }
         mDirection = direction;
         switch (direction) {
+            default:
             case FORWARD:
                 progress = 0;
                 break;
@@ -458,6 +460,7 @@ public class RoundProgressBar extends View {
 
     /**
      * set progress by your self
+     *
      * @param progress progress
      */
     public void setProgress(int progress) {

@@ -2,24 +2,24 @@
 <resources>
     <declare-styleable name="RoundProgressBar">
         <!--外弧的宽度-->
-        <attr name="sweep_stroke_width" format="dimension|reference" />
+        <attr name="rpb_sweepStrokeWidth" format="dimension|reference" />
         <!--外弧的颜色-->
-        <attr name="sweep_stroke_color" format="color|reference" />
+        <attr name="rpb_sweepStrokeColor" format="color|reference" />
         <!--外弧的起始位置默认是-90-->
-        <attr name="sweep_start_angle" format="integer" />
+        <attr name="rpb_sweepStartAngle" format="integer" />
         <!--中间的文本-->
-        <attr name="center_text" format="string|reference" />
+        <attr name="rpb_centerText" format="string|reference" />
         <!--中间文本的大小-->
-        <attr name="center_text_size" format="dimension|reference" />
+        <attr name="rpb_centerTextSize" format="dimension|reference" />
         <!--中间文本的颜色-->
-        <attr name="center_text_color" format="color|reference" />
+        <attr name="rpb_centerTextColor" format="color|reference" />
         <!--中间的背景颜色-->
-        <attr name="center_background" format="color|reference" />
+        <attr name="rpb_centerBackgroundColor" format="color|reference" />
         <!--倒计时的总时间(毫秒)-->
-        <attr name="count_down_time_millis" format="integer" />
+        <attr name="rpb_countDownTimeInMillis" format="integer" />
         <!--是否自动开始计时-->
-        <attr name="auto_start" format="boolean" />
-        <attr name="progress_direction" format="enum">
+        <attr name="rpb_autoStart" format="boolean" />
+        <attr name="rpb_progressDirection" format="enum">
             <enum name="forward" value="0" /><!--正-->
             <enum name="reverse" value="1" /><!--反-->
         </attr>
