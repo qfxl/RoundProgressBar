@@ -83,7 +83,7 @@ mRoundProgressBar.stop();
 
 ### 如何设置为百分比计时
 
-只需要center_text为空，则默认开启百分比计时效果
+只需要rpb_centerText为空，则默认开启百分比计时效果
 
 
   [1]: https://github.com/qfxl/RoundProgressBar/blob/master/gif/demo.gif
