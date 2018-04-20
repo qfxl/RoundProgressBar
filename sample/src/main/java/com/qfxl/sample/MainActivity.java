@@ -29,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
         mRoundProgressBar.setStrokeWidth(4);
         mRoundProgressBar.setStrokeColor(Color.RED);
         mRoundProgressBar.setAutoStart(true);
+        mRoundProgressBar.setShouldDrawOutsideWrapper(true);
+        mRoundProgressBar.setOutsideWrapperColor(Color.BLUE);
         mRoundProgressBar.setDirection(RoundProgressBar.Direction.REVERSE);
 
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);

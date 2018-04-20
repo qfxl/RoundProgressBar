@@ -6,12 +6,22 @@ Android圆形倒计时控件，采用Canvas绘制外加ValueAnimator实现计时
 ![此处输入图片的描述][1]
 
 ## Gradle
+
+### 1.0.0
 ```groovy
-compile 'com.qfxl:roundProgressBar:1.0.0'
+implementation 'com.qfxl:roundProgressBar:1.0.0'
+```
+
+### 1.0.1
+* 可以设置是否绘制外弧wrapper
+* 可以设置外弧wrapper的颜色
+```groovy
+implementation 'com.qfxl:roundProgressBar:1.0.1'
+
 ```
 ## code
 ```java
-  RoundProgressBar roundProgressBar = new RoundProgressBar(this);
+        RoundProgressBar roundProgressBar = new RoundProgressBar(this);
         roundProgressBar.setCenterTextSize(40);
         roundProgressBar.setCenterText("清风徐来");
         roundProgressBar.setCenterTextColor(Color.BLUE);
@@ -21,6 +31,8 @@ compile 'com.qfxl:roundProgressBar:1.0.0'
         roundProgressBar.setStartAngle(-90);
         roundProgressBar.setStrokeWidth(10);
         roundProgressBar.setAutoStart(true);
+         mRoundProgressBar.setShouldDrawOutsideWrapper(true);
+        mRoundProgressBar.setOutsideWrapperColor(Color.BLUE);
         roundProgressBar.setDirection(RoundProgressBar.Direction.REVERSE);      
 ```
 
@@ -39,7 +51,10 @@ compile 'com.qfxl:roundProgressBar:1.0.0'
         app:rpb_sweepStartAngle="-90"
         app:rpb_autoStart="true"
         app:rpb_sweepStrokeColor="@color/colorPrimaryDark"
-        app:rpb_sweepStrokeWidth="2dp" />
+        app:rpb_sweepStrokeWidth="2dp"
+        app:rpb_drawOutsideWrapper="true"
+        app:rpb_outsideWrapperColor="@color/colorGray"
+        />
 ```
 
 ## 自定义属性
@@ -56,6 +71,8 @@ compile 'com.qfxl:roundProgressBar:1.0.0'
 |rpb_countDownTimeInMillis|倒计时的时间|integer|3000(ms)|
 |rpb_progressDirection|外弧扫过的方向|enum[forward(0),reverse(1)]|forward(0)|
 |rpb_autoStart|是否自动开启倒计时|boolean|true|
+|rpb_drawOutsideWrapper|是否绘制外弧wrapper|boolean|false|
+|rpb_outsideWrapperColor|外弧wrapper的颜色|color|Color.GRAY|
 
 ## 其他
 ### 如何监听

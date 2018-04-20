@@ -58,7 +58,7 @@
         app:rpb_progressDirection="forward"
         app:rpb_sweepStartAngle="0"
         app:rpb_sweepStrokeColor="#39aa1a"
-        app:rpb_sweepStrokeWidth="2dp" />
+        app:rpb_sweepStrokeWidth="4dp" />
 
     <Space
         android:layout_width="match_parent"
