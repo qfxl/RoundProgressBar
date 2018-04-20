@@ -31,8 +31,8 @@ implementation 'com.qfxl:roundProgressBar:1.0.1'
         roundProgressBar.setStartAngle(-90);
         roundProgressBar.setStrokeWidth(10);
         roundProgressBar.setAutoStart(true);
-         mRoundProgressBar.setShouldDrawOutsideWrapper(true);
-        mRoundProgressBar.setOutsideWrapperColor(Color.BLUE);
+        roundProgressBar.setShouldDrawOutsideWrapper(true);
+        roundProgressBar.setOutsideWrapperColor(Color.BLUE);
         roundProgressBar.setDirection(RoundProgressBar.Direction.REVERSE);      
 ```
 
