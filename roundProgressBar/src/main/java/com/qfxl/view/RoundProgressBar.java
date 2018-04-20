@@ -18,6 +18,7 @@ import android.view.animation.LinearInterpolator;
 
 /**
  * roundProgressBar
+ *
  * @author qfxl
  */
 
@@ -118,6 +119,18 @@ public class RoundProgressBar extends View {
      * value animator
      */
     private ValueAnimator animator;
+    /**
+     * if true draw outsideWrapper false otherwise
+     */
+    private boolean shouldDrawOutsideWrapper;
+    /**
+     * outsideWrapper color
+     */
+    private int outsideWrapperColor;
+    /**
+     * default space between view to bound
+     */
+    private int defaultSpace;
 
     public RoundProgressBar(Context context) {
         this(context, null);
@@ -141,8 +154,10 @@ public class RoundProgressBar extends View {
         countDownTimeMillis = a.getInteger(R.styleable.RoundProgressBar_rpb_countDownTimeInMillis, 3 * 1000);
         directionIndex = a.getInt(R.styleable.RoundProgressBar_rpb_progressDirection, 0);
         isAutoStart = a.getBoolean(R.styleable.RoundProgressBar_rpb_autoStart, true);
+        shouldDrawOutsideWrapper = a.getBoolean(R.styleable.RoundProgressBar_rpb_drawOutsideWrapper, false);
+        outsideWrapperColor = a.getColor(R.styleable.RoundProgressBar_rpb_outsideWrapperColor, Color.GRAY);
         a.recycle();
-
+        defaultSpace = strokeWidth / 2;
         arcPaint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.DITHER_FLAG);
         arcPaint.setStyle(Paint.Style.STROKE);
 
@@ -176,10 +191,10 @@ public class RoundProgressBar extends View {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        arcRect.left = strokeWidth / 2;
-        arcRect.top = strokeWidth / 2;
-        arcRect.right = w - strokeWidth / 2;
-        arcRect.bottom = h - strokeWidth / 2;
+        arcRect.left = defaultSpace;
+        arcRect.top = defaultSpace;
+        arcRect.right = w - defaultSpace;
+        arcRect.bottom = h - defaultSpace;
     }
 
     /**
@@ -199,7 +214,7 @@ public class RoundProgressBar extends View {
                 } else {
                     textPaint.getTextBounds(centerText, 0, centerText.length(), textBounds);
                 }
-                suggestSize = getPaddingLeft() + getPaddingRight() + textBounds.width() + strokeWidth * 2;
+                suggestSize = getPaddingLeft() + getPaddingRight() + textBounds.width() + defaultSpace * 2;
                 break;
             case MeasureSpec.EXACTLY:
                 suggestSize = measuredSize;
@@ -226,7 +241,7 @@ public class RoundProgressBar extends View {
                 } else {
                     textPaint.getTextBounds(centerText, 0, centerText.length(), textBounds);
                 }
-                suggestSize = getPaddingTop() + getPaddingBottom() + textBounds.height() + strokeWidth * 2;
+                suggestSize = getPaddingTop() + getPaddingBottom() + textBounds.height() + defaultSpace * 2;
                 break;
             case MeasureSpec.EXACTLY:
                 suggestSize = measuredSize;
@@ -239,15 +254,23 @@ public class RoundProgressBar extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        centerBgPaint.setColor(centerBackground);
-        textPaint.setColor(centerTextColor);
-        arcPaint.setColor(strokeColor);
-        arcPaint.setStrokeWidth(strokeWidth);
         //draw center background circle
-        canvas.drawCircle(getWidth() / 2, getHeight() / 2, (getWidth() - strokeWidth * 2) / 2, centerBgPaint);
+        centerBgPaint.setColor(centerBackground);
+        canvas.drawCircle(getWidth() / 2, getHeight() / 2, (getWidth() - defaultSpace * 2) / 2, centerBgPaint);
+
+        //draw outside arc wrapper
+        if (shouldDrawOutsideWrapper) {
+            arcPaint.setColor(outsideWrapperColor);
+            canvas.drawArc(arcRect, 0, 360, false, arcPaint);
+        }
+
         //draw outside arc
+        arcPaint.setStrokeWidth(strokeWidth);
+        arcPaint.setColor(strokeColor);
         canvas.drawArc(arcRect, startAngle, (float) (3.6 * progress), false, arcPaint);
+
         //draw text
+        textPaint.setColor(centerTextColor);
         if (TextUtils.isEmpty(centerText)) {
             canvas.drawText(progress + "%", arcRect.centerX(), arcRect.centerY() - (textPaint.descent() + textPaint.ascent()) / 2, textPaint);
         } else {
@@ -473,13 +496,29 @@ public class RoundProgressBar extends View {
         invalidate();
     }
 
+    public void setShouldDrawOutsideWrapper(boolean shouldDrawOutsideWrapper) {
+        this.shouldDrawOutsideWrapper = shouldDrawOutsideWrapper;
+    }
+
+    public void setOutsideWrapperColor(int outsideWrapperColor) {
+        this.outsideWrapperColor = outsideWrapperColor;
+    }
+
     private float sp2px(float inParam) {
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, inParam, getContext().getResources().getDisplayMetrics());
     }
 
     public interface ProgressChangeListener {
+        /**
+         * onFinish
+         */
         void onFinish();
 
+        /**
+         * onProgressChanged
+         *
+         * @param progress
+         */
         void onProgressChanged(int progress);
     }
 

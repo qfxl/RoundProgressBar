@@ -53,6 +53,7 @@
         app:rpb_centerText="加载中"
         app:rpb_centerTextColor="#000"
         app:rpb_centerTextSize="20sp"
+        app:rpb_drawOutsideWrapper="true"
         app:rpb_countDownTimeInMillis="5000"
         app:rpb_progressDirection="forward"
         app:rpb_sweepStartAngle="0"

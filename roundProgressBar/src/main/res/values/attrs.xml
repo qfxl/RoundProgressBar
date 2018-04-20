@@ -23,5 +23,7 @@
             <enum name="forward" value="0" /><!--正-->
             <enum name="reverse" value="1" /><!--反-->
         </attr>
+        <attr name="rpb_drawOutsideWrapper" format="boolean" />
+        <attr name="rpb_outsideWrapperColor" format="color|reference" />
     </declare-styleable>
 </resources>
