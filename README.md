@@ -6,7 +6,9 @@ Android圆形倒计时控件，采用Canvas绘制外加ValueAnimator实现计时
 ![此处输入图片的描述][1]
 
 ## Gradle
+```groovy
 implementation 'com.qfxl:roundProgressBar:1.0.1'
+```
 
 ## code
 ```java
