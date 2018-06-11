@@ -8,7 +8,6 @@ Android圆形倒计时控件，采用Canvas绘制外加ValueAnimator实现计时
 ## Gradle
 implementation 'com.qfxl:roundProgressBar:1.0.1'
 
-```
 ## code
 ```java
         RoundProgressBar roundProgressBar = new RoundProgressBar(this);
