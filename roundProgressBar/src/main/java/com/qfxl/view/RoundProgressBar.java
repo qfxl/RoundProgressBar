@@ -183,7 +183,7 @@ public class RoundProgressBar extends View {
         isAutoStart = a.getBoolean(R.styleable.RoundProgressBar_rpb_autoStart, true);
         shouldDrawOutsideWrapper = a.getBoolean(R.styleable.RoundProgressBar_rpb_drawOutsideWrapper, false);
         outsideWrapperColor = a.getColor(R.styleable.RoundProgressBar_rpb_outsideWrapperColor, Color.GRAY);
-        isSupportEts = a.getBoolean(R.styleable.RoundProgressBar_rpn_supportEndToStart, false);
+        isSupportEts = a.getBoolean(R.styleable.RoundProgressBar_rpb_supportEndToStart, false);
         a.recycle();
         defaultSpace = strokeWidth;
         arcPaint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.DITHER_FLAG);
@@ -531,6 +531,14 @@ public class RoundProgressBar extends View {
 
     public void setOutsideWrapperColor(int outsideWrapperColor) {
         this.outsideWrapperColor = outsideWrapperColor;
+    }
+
+    public boolean isSupportEts() {
+        return isSupportEts;
+    }
+
+    public void setSupportEts(boolean supportEts) {
+        isSupportEts = supportEts;
     }
 
     private float sp2px(float inParam) {

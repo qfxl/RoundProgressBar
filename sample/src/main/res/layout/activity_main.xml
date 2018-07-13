@@ -41,7 +41,7 @@
         app:rpb_sweepStartAngle="-90"
         app:rpb_sweepStrokeColor="@color/colorPrimaryDark"
         app:rpb_sweepStrokeWidth="2dp"
-        app:rpn_supportEndToStart="true" />
+        app:rpb_supportEndToStart="true" />
 
     <Space
         android:layout_width="match_parent"
@@ -74,7 +74,7 @@
         app:rpb_centerTextColor="#fff"
         app:rpb_centerTextSize="14sp"
         app:rpb_countDownTimeInMillis="5000"
-        app:rpn_supportEndToStart="true"
+        app:rpb_supportEndToStart="true"
         app:rpb_progressDirection="reverse"
         app:rpb_sweepStartAngle="-90"
         app:rpb_sweepStrokeColor="@color/colorPrimaryDark"

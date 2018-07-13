@@ -28,6 +28,6 @@
         <!--外層wrapper的顔色-->
         <attr name="rpb_outsideWrapperColor" format="color|reference" />
         <!--是否支持end to start-->
-        <attr name="rpn_supportEndToStart" format="boolean" />
+        <attr name="rpb_supportEndToStart" format="boolean" />
     </declare-styleable>
 </resources>

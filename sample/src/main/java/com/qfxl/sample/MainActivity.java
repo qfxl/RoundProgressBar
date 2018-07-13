@@ -31,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
         mRoundProgressBar.setAutoStart(true);
         mRoundProgressBar.setShouldDrawOutsideWrapper(true);
         mRoundProgressBar.setOutsideWrapperColor(Color.GRAY);
+        mRoundProgressBar.setSupportEts(true);
+        //最后调用该方法
         mRoundProgressBar.setDirection(RoundProgressBar.Direction.REVERSE);
 
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
