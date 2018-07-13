@@ -12,19 +12,20 @@ implementation 'com.qfxl:roundProgressBar:1.0.2'
 
 ## code
 ```java
-        RoundProgressBar roundProgressBar = new RoundProgressBar(this);
-        roundProgressBar.setCenterTextSize(40);
-        roundProgressBar.setCenterText("清风徐来");
-        roundProgressBar.setCenterTextColor(Color.BLUE);
-        roundProgressBar.setCountDownTimeMillis(5000);
-        roundProgressBar.setPadding(10,10,10,10);       
-        roundProgressBar.setCenterBackground(Color.WHITE);
-        roundProgressBar.setStartAngle(-90);
-        roundProgressBar.setStrokeWidth(10);
-        roundProgressBar.setAutoStart(true);
-        roundProgressBar.setShouldDrawOutsideWrapper(true);
-        roundProgressBar.setOutsideWrapperColor(Color.BLUE);
-        roundProgressBar.setDirection(RoundProgressBar.Direction.REVERSE);      
+        mRoundProgressBar.setCenterTextSize(40);
+        mRoundProgressBar.setCenterText("清风徐来");
+        mRoundProgressBar.setCenterTextColor(Color.BLACK);
+        mRoundProgressBar.setCountDownTimeMillis(5000);
+        mRoundProgressBar.setPadding(20, 20, 20, 20);
+        mRoundProgressBar.setCenterBackground(Color.WHITE);
+        mRoundProgressBar.setStartAngle(-90);
+        mRoundProgressBar.setStrokeWidth(10);
+        mRoundProgressBar.setStrokeColor(Color.BLACK);
+        mRoundProgressBar.setAutoStart(true);
+        mRoundProgressBar.setShouldDrawOutsideWrapper(true);
+        mRoundProgressBar.setOutsideWrapperColor(Color.GRAY);
+        mRoundProgressBar.setSupportEts(true);       
+        mRoundProgressBar.setDirection(RoundProgressBar.Direction.REVERSE);    
 ```
 
 ## layout
@@ -45,6 +46,7 @@ implementation 'com.qfxl:roundProgressBar:1.0.2'
         app:rpb_sweepStrokeWidth="2dp"
         app:rpb_drawOutsideWrapper="true"
         app:rpb_outsideWrapperColor="@color/colorGray"
+        app:rpb_supportEndToStart="true"                        
         />
 ```
 
