@@ -31,6 +31,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="10dp"
+        app:rpb_autoStart="true"
+        app:rpb_centerBackgroundColor="#808080"
+        app:rpb_centerText="skip"
+        app:rpb_centerTextColor="#fff"
+        app:rpb_centerTextSize="14sp"
+        app:rpb_countDownTimeInMillis="5000"
+        app:rpb_progressDirection="forward"
+        app:rpb_sweepStartAngle="-90"
+        app:rpb_sweepStrokeColor="@color/colorPrimaryDark"
+        app:rpb_sweepStrokeWidth="2dp"
+        app:rpn_supportEndToStart="true" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
+
+    <com.qfxl.view.RoundProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
         app:rpb_centerBackgroundColor="#808080"
         app:rpb_centerText="跳过"
         app:rpb_centerTextColor="#fff"
@@ -49,12 +69,31 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="10dp"
+        app:rpb_centerBackgroundColor="#808080"
+        app:rpb_centerText="skip"
+        app:rpb_centerTextColor="#fff"
+        app:rpb_centerTextSize="14sp"
+        app:rpb_countDownTimeInMillis="5000"
+        app:rpn_supportEndToStart="true"
+        app:rpb_progressDirection="reverse"
+        app:rpb_sweepStartAngle="-90"
+        app:rpb_sweepStrokeColor="@color/colorPrimaryDark"
+        app:rpb_sweepStrokeWidth="2dp" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
+
+    <com.qfxl.view.RoundProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
         app:rpb_centerBackgroundColor="#e8e8e8"
         app:rpb_centerText="加载中"
         app:rpb_centerTextColor="#000"
         app:rpb_centerTextSize="20sp"
-        app:rpb_drawOutsideWrapper="true"
         app:rpb_countDownTimeInMillis="5000"
+        app:rpb_drawOutsideWrapper="true"
         app:rpb_progressDirection="forward"
         app:rpb_sweepStartAngle="0"
         app:rpb_sweepStrokeColor="#39aa1a"

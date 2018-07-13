@@ -1,3 +1,26 @@
+/*
+ * MIT License
+ *
+ * Copyright (c) 2018 Frank Xu
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
 package com.qfxl.view;
 
 import android.animation.Animator;
@@ -131,6 +154,10 @@ public class RoundProgressBar extends View {
      * default space between view to bound
      */
     private int defaultSpace;
+    /**
+     * isSupport end to start, if true progress = progress - 360.
+     */
+    private boolean isSupportEts;
 
     public RoundProgressBar(Context context) {
         this(context, null);
@@ -156,8 +183,9 @@ public class RoundProgressBar extends View {
         isAutoStart = a.getBoolean(R.styleable.RoundProgressBar_rpb_autoStart, true);
         shouldDrawOutsideWrapper = a.getBoolean(R.styleable.RoundProgressBar_rpb_drawOutsideWrapper, false);
         outsideWrapperColor = a.getColor(R.styleable.RoundProgressBar_rpb_outsideWrapperColor, Color.GRAY);
+        isSupportEts = a.getBoolean(R.styleable.RoundProgressBar_rpn_supportEndToStart, false);
         a.recycle();
-        defaultSpace = strokeWidth / 2;
+        defaultSpace = strokeWidth;
         arcPaint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.DITHER_FLAG);
         arcPaint.setStyle(Paint.Style.STROKE);
 
@@ -165,7 +193,7 @@ public class RoundProgressBar extends View {
         textPaint.setTextSize(centerTextSize);
         textPaint.setTextAlign(Paint.Align.CENTER);
 
-        centerBgPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        centerBgPaint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.DITHER_FLAG);
         centerBgPaint.setStyle(Paint.Style.FILL);
 
         arcRect = new RectF();
@@ -214,7 +242,7 @@ public class RoundProgressBar extends View {
                 } else {
                     textPaint.getTextBounds(centerText, 0, centerText.length(), textBounds);
                 }
-                suggestSize = getPaddingLeft() + getPaddingRight() + textBounds.width() + defaultSpace * 2;
+                suggestSize = getPaddingLeft() + getPaddingRight() + textBounds.width() + defaultSpace;
                 break;
             case MeasureSpec.EXACTLY:
                 suggestSize = measuredSize;
@@ -241,7 +269,7 @@ public class RoundProgressBar extends View {
                 } else {
                     textPaint.getTextBounds(centerText, 0, centerText.length(), textBounds);
                 }
-                suggestSize = getPaddingTop() + getPaddingBottom() + textBounds.height() + defaultSpace * 2;
+                suggestSize = getPaddingTop() + getPaddingBottom() + textBounds.height() + defaultSpace;
                 break;
             case MeasureSpec.EXACTLY:
                 suggestSize = measuredSize;
@@ -267,12 +295,14 @@ public class RoundProgressBar extends View {
         //draw outside arc
         arcPaint.setStrokeWidth(strokeWidth);
         arcPaint.setColor(strokeColor);
-        canvas.drawArc(arcRect, startAngle, (float) (3.6 * progress), false, arcPaint);
+        progress = isSupportEts ? progress - 360 : progress;
+        canvas.drawArc(arcRect, startAngle, progress, false, arcPaint);
 
         //draw text
         textPaint.setColor(centerTextColor);
         if (TextUtils.isEmpty(centerText)) {
-            canvas.drawText(progress + "%", arcRect.centerX(), arcRect.centerY() - (textPaint.descent() + textPaint.ascent()) / 2, textPaint);
+            int currentProgress = Math.abs((int) (progress / 3.6));
+            canvas.drawText(currentProgress + "%", arcRect.centerX(), arcRect.centerY() - (textPaint.descent() + textPaint.ascent()) / 2, textPaint);
         } else {
             canvas.drawText(centerText, arcRect.centerX(), arcRect.centerY() - (textPaint.descent() + textPaint.ascent()) / 2, textPaint);
         }
@@ -318,12 +348,11 @@ public class RoundProgressBar extends View {
             animator.start();
         } else {
             int start = 0;
-            int end = 100;
+            int end = 360;
             if (direction == Direction.REVERSE) {
-                start = 100;
+                start = 360;
                 end = 0;
             }
-
             animator = ValueAnimator.ofInt(start, end).setDuration(duration);
             animator.setInterpolator(new LinearInterpolator());
             animator.start();
@@ -332,7 +361,7 @@ public class RoundProgressBar extends View {
                 public void onAnimationUpdate(ValueAnimator animation) {
                     progress = (int) animation.getAnimatedValue();
                     if (mProgressChangeListener != null) {
-                        mProgressChangeListener.onProgressChanged(progress);
+                        mProgressChangeListener.onProgressChanged((int) (progress / 3.6));
                     }
                     invalidate();
                 }
@@ -473,7 +502,7 @@ public class RoundProgressBar extends View {
                 progress = 0;
                 break;
             case REVERSE:
-                progress = 100;
+                progress = 360;
                 break;
         }
         if (isAutoStart) {

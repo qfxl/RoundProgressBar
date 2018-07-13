@@ -3,7 +3,7 @@ package com.qfxl.sample;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
+import android.util.Log;
 import android.widget.LinearLayout;
 
 import com.qfxl.view.RoundProgressBar;
@@ -17,20 +17,20 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        LinearLayout mLinearLayout = (LinearLayout) findViewById(R.id.ll_main);
+        LinearLayout mLinearLayout = findViewById(R.id.ll_main);
         final RoundProgressBar mRoundProgressBar = new RoundProgressBar(this);
         mRoundProgressBar.setCenterTextSize(40);
         mRoundProgressBar.setCenterText("清风徐来");
-        mRoundProgressBar.setCenterTextColor(Color.BLUE);
+        mRoundProgressBar.setCenterTextColor(Color.BLACK);
         mRoundProgressBar.setCountDownTimeMillis(5000);
-        mRoundProgressBar.setPadding(10, 10, 10, 10);
+        mRoundProgressBar.setPadding(20, 20, 20, 20);
         mRoundProgressBar.setCenterBackground(Color.WHITE);
         mRoundProgressBar.setStartAngle(-90);
-        mRoundProgressBar.setStrokeWidth(4);
-        mRoundProgressBar.setStrokeColor(Color.RED);
+        mRoundProgressBar.setStrokeWidth(10);
+        mRoundProgressBar.setStrokeColor(Color.BLACK);
         mRoundProgressBar.setAutoStart(true);
         mRoundProgressBar.setShouldDrawOutsideWrapper(true);
-        mRoundProgressBar.setOutsideWrapperColor(Color.BLUE);
+        mRoundProgressBar.setOutsideWrapperColor(Color.GRAY);
         mRoundProgressBar.setDirection(RoundProgressBar.Direction.REVERSE);
 
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
