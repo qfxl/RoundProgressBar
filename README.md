@@ -64,6 +64,7 @@ implementation 'com.qfxl:roundProgressBar:1.0.1'
 |rpb_autoStart|是否自动开启倒计时|boolean|true|
 |rpb_drawOutsideWrapper|是否绘制外弧wrapper|boolean|false|
 |rpb_outsideWrapperColor|外弧wrapper的颜色|color|Color.GRAY|
+|rpn_supportEndToStart|是否支持反转(true 绘制的progress=progress-360)|boolean|false|
 
 ## 其他
 ### 如何监听
