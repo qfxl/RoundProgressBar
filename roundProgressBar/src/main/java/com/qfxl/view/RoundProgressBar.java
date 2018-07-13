@@ -295,14 +295,12 @@ public class RoundProgressBar extends View {
         //draw outside arc
         arcPaint.setStrokeWidth(strokeWidth);
         arcPaint.setColor(strokeColor);
-        progress = isSupportEts ? progress - 360 : progress;
-        canvas.drawArc(arcRect, startAngle, progress, false, arcPaint);
+        canvas.drawArc(arcRect, startAngle, isSupportEts ? progress - 360 : progress, false, arcPaint);
 
         //draw text
         textPaint.setColor(centerTextColor);
         if (TextUtils.isEmpty(centerText)) {
-            int currentProgress = Math.abs((int) (progress / 3.6));
-            canvas.drawText(currentProgress + "%", arcRect.centerX(), arcRect.centerY() - (textPaint.descent() + textPaint.ascent()) / 2, textPaint);
+            canvas.drawText(Math.abs((int) (progress / 3.6)) + "%", arcRect.centerX(), arcRect.centerY() - (textPaint.descent() + textPaint.ascent()) / 2, textPaint);
         } else {
             canvas.drawText(centerText, arcRect.centerX(), arcRect.centerY() - (textPaint.descent() + textPaint.ascent()) / 2, textPaint);
         }
