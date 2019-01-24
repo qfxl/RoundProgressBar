@@ -7,7 +7,7 @@ Android圆形倒计时控件，采用Canvas绘制外加ValueAnimator实现计时
 
 ## Gradle
 ```groovy
-implementation 'com.qfxl:roundProgressBar:1.0.3'
+implementation 'com.qfxl:roundProgressBar:1.0.4'
 ```
 
 ## code
@@ -68,6 +68,11 @@ implementation 'com.qfxl:roundProgressBar:1.0.3'
 |rpb_outsideWrapperColor|外弧wrapper的颜色|color|Color.GRAY|
 |rpb_supportEndToStart|是否支持反转(true 绘制的progress=progress-360)|boolean|false|
 
+## 版本
+
+* v1.0.4 增加暂停跟恢复
+
+
 ## 其他
 ### 如何监听
 
@@ -93,6 +98,16 @@ mRoundProgressBar.start();
 `倒计时结束自动停止，当然也可以强制停止`
 ```java
 mRoundProgressBar.stop();
+```
+
+### 如何暂停
+```java
+mRoundProgressBar.pause();
+```
+
+### 如何恢复
+```java
+mRoundProgressBar.resume();
 ```
 
 ### 如何设置为百分比计时
