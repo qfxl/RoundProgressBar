@@ -32,6 +32,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.os.Build;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.TypedValue;
@@ -159,6 +160,7 @@ public class RoundProgressBar extends View {
      */
     private boolean isSupportEts;
 
+    private long currentTime;
     public RoundProgressBar(Context context) {
         this(context, null);
     }
@@ -317,11 +319,38 @@ public class RoundProgressBar extends View {
      * stop
      */
     public void stop() {
-        if (animator != null && animator.isRunning()) {
+        if (animator != null) {
             animator.cancel();
         }
     }
 
+    /**
+     * pause
+     */
+    public void pause() {
+        if (animator != null) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                animator.pause();
+            } else {
+                currentTime = animator.getCurrentPlayTime();
+                animator.cancel();
+            }
+        }
+    }
+
+    /**
+     * resume
+     */
+    public void resume() {
+        if (animator != null) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                animator.resume();
+            } else {
+                animator.setCurrentPlayTime(currentTime);
+                animator.start();
+            }
+        }
+    }
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
