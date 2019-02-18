@@ -7,7 +7,7 @@ Android圆形倒计时控件，采用Canvas绘制外加ValueAnimator实现计时
 
 ## Gradle
 ```groovy
-implementation 'com.qfxl:roundProgressBar:1.0.4'
+implementation 'com.qfxl:roundProgressBar:1.0.5'
 ```
 
 ## code
@@ -71,6 +71,7 @@ implementation 'com.qfxl:roundProgressBar:1.0.4'
 ## 版本
 
 * v1.0.4 增加暂停跟恢复
+* v1.0.5 增加进度的百分比设置、修复设置进度不正确问题
 
 
 ## 其他

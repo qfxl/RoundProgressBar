@@ -540,11 +540,11 @@ public class RoundProgressBar extends View {
     /**
      * set progress by your self
      *
-     * @param progress progress
+     * @param progress progress 0-360
      */
     public void setProgress(int progress) {
-        if (progress > 100) {
-            progress = 100;
+        if (progress > 360) {
+            progress = 360;
         } else if (progress < 0) {
             progress = 0;
         }
@@ -552,6 +552,19 @@ public class RoundProgressBar extends View {
         invalidate();
     }
 
+    /**
+     * set progress percent
+     * @param progressPercent 0-100
+     */
+    public void setProgressPercent(int progressPercent) {
+        if (progressPercent > 100) {
+            progressPercent = 100;
+        } else if (progressPercent < 0) {
+            progressPercent = 0;
+        }
+        this.progress = (int) (progressPercent * 3.6);
+        invalidate();
+    }
     public void setShouldDrawOutsideWrapper(boolean shouldDrawOutsideWrapper) {
         this.shouldDrawOutsideWrapper = shouldDrawOutsideWrapper;
     }
