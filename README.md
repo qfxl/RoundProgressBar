@@ -1,11 +1,11 @@
 # RoundProgressBar
-Android圆形倒计时控件，采用Canvas绘制外加ValueAnimator实现计时效果,可以自定义文字，文字大小，文字颜色，外弧的宽度，颜色，外弧扫过的方向等
+Android圆形倒计时控件，采用Canvas加ValueAnimator实现计时效果,可以自定义文字，文字大小，文字颜色，外弧的宽度，颜色，外弧扫过的方向等
 
 [![996.icu](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu) 
 
 ## LICENSE
 
-[![LICENSE](https://img.shields.io/badge/license-NPL%20(The%20996%20Prohibited%20License)-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
+[![LICENSE](https://img.shields.io/badge/license-Anti%20996-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
 
 ## 效果图
 
