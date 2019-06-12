@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ll_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -14,19 +13,16 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:padding="10dp"
-
         app:layout_constraintEnd_toStartOf="@+id/rpb_4"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:rpb_autoStart="true"
-        app:rpb_centerBackgroundColor="#808080"
         app:rpb_centerText="跳过"
-        app:rpb_centerTextColor="#fff"
         app:rpb_centerTextSize="14sp"
-        app:rpb_countDownTimeInMillis="5000"
-        app:rpb_progressDirection="forward"
-        app:rpb_sweepStartAngle="-90"
+        app:rpb_drawOutsideWrapper="true"
+        app:rpb_outsideWrapperColor="#d1d1d1"
+        app:rpb_countDownTimeInMillis="8000"
         app:rpb_sweepStrokeColor="@color/colorPrimaryDark"
         app:rpb_sweepStrokeWidth="2dp" />
 
@@ -42,14 +38,11 @@
         app:layout_constraintStart_toEndOf="@+id/rpb_3"
         app:layout_constraintTop_toTopOf="parent"
         app:rpb_autoStart="true"
-        app:rpb_centerBackgroundColor="#808080"
         app:rpb_centerText="skip"
         app:rpb_centerTextColor="#fff"
         app:rpb_centerTextSize="14sp"
-        app:rpb_countDownTimeInMillis="5000"
-        app:rpb_progressDirection="forward"
+        app:rpb_countDownTimeInMillis="8000"
         app:rpb_supportEndToStart="true"
-        app:rpb_sweepStartAngle="-90"
         app:rpb_sweepStrokeColor="@color/colorPrimaryDark"
         app:rpb_sweepStrokeWidth="2dp" />
 
@@ -64,11 +57,10 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/rpb_4"
         app:layout_constraintTop_toTopOf="parent"
-        app:rpb_centerBackgroundColor="#808080"
         app:rpb_centerText="跳过"
         app:rpb_centerTextColor="#fff"
         app:rpb_centerTextSize="14sp"
-        app:rpb_countDownTimeInMillis="5000"
+        app:rpb_countDownTimeInMillis="8000"
         app:rpb_progressDirection="reverse"
         app:rpb_sweepStartAngle="-90"
         app:rpb_sweepStrokeColor="@color/colorPrimaryDark"
@@ -85,11 +77,10 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/rpb_1"
         app:layout_constraintTop_toTopOf="parent"
-        app:rpb_centerBackgroundColor="#808080"
         app:rpb_centerText="skip"
         app:rpb_centerTextColor="#fff"
         app:rpb_centerTextSize="14sp"
-        app:rpb_countDownTimeInMillis="5000"
+        app:rpb_countDownTimeInMillis="8000"
         app:rpb_progressDirection="reverse"
         app:rpb_supportEndToStart="true"
         app:rpb_sweepStartAngle="-90"
@@ -106,11 +97,10 @@
         app:layout_constraintEnd_toStartOf="@+id/rpb_6"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/rpb_7"
-        app:rpb_centerBackgroundColor="#e8e8e8"
         app:rpb_centerText="加载中"
         app:rpb_centerTextColor="#000"
         app:rpb_centerTextSize="20sp"
-        app:rpb_countDownTimeInMillis="5000"
+        app:rpb_countDownTimeInMillis="8000"
         app:rpb_drawOutsideWrapper="true"
         app:rpb_progressDirection="forward"
         app:rpb_sweepStartAngle="0"
@@ -122,8 +112,8 @@
         android:id="@+id/rpb_6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
         android:padding="10dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -131,10 +121,11 @@
         app:rpb_centerBackgroundColor="#2b2c33"
         app:rpb_centerTextColor="#fff"
         app:rpb_centerTextSize="14sp"
-        app:rpb_countDownTimeInMillis="5000"
+        app:rpb_countDownTimeInMillis="8000"
         app:rpb_progressDirection="reverse"
         app:rpb_sweepStartAngle="180"
-        app:rpb_sweepStrokeColor="@color/colorAccent"
+        app:rpb_centerText="跳过"
+        app:rpb_sweepStrokeColor="#39aa1a"
         app:rpb_sweepStrokeWidth="2dp" />
 
 
@@ -148,13 +139,12 @@
         app:layout_constraintEnd_toStartOf="@+id/rpb_5"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:rpb_centerBackgroundColor="#dc1717"
+        app:rpb_centerBackgroundColor="#39aa1a"
         app:rpb_centerTextColor="#fff"
         app:rpb_centerTextSize="14sp"
-        app:rpb_countDownTimeInMillis="5000"
+        app:rpb_countDownTimeInMillis="8000"
         app:rpb_progressDirection="forward"
         app:rpb_sweepStartAngle="-90"
-        app:rpb_sweepStrokeColor="#179a86"
         app:rpb_sweepStrokeWidth="2dp" />
 
     <com.qfxl.view.RoundProgressBar
@@ -171,6 +161,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</android.support.constraint.ConstraintLayout>
+        app:layout_constraintTop_toTopOf="parent"
+        app:rpb_centerText="清风徐来"
+        app:rpb_countDownTimeInMillis="8000" />
+</androidx.constraintlayout.widget.ConstraintLayout>
 

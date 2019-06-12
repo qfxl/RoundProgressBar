@@ -13,7 +13,7 @@ Android圆形倒计时控件，采用Canvas加ValueAnimator实现计时效果,�
 
 ## Gradle
 ```groovy
-implementation 'com.qfxl:roundProgressBar:1.0.5'
+implementation 'com.qfxl:roundProgressBar:1.1.0'
 ```
 
 ## code
@@ -60,24 +60,26 @@ implementation 'com.qfxl:roundProgressBar:1.0.5'
 
 |属性|属性说明|类型|默认值|
 |:--:|:--:|:--:|:--:|
-|rpb_sweepStrokeWidth|外弧线的宽度|dimension|5|
+|rpb_sweepStrokeWidth|外弧线的宽度|dimension|2dp|
 |rpb_sweepStrokeColor|外弧线的颜色|color|Color.BLACK|
 |rpb_sweepStartAngle|外弧线的起始扫描角度|integer|-90|
 |rpb_centerText|中间文本|string|-|
 |rpb_centerTextSize|中间文本的文字大小|dimension|12sp|
-|rpb_centerTextColor|中间文本的文字颜色|color|Color.BLACK|
-|rpb_centerBackgroundColor|中间区域的背景色|color|Color.GRAY|
+|rpb_centerTextColor|中间文本的文字颜色|color|Color.WHITE|
+|rpb_centerBackgroundColor|中间区域的背景色|color|#808080|
 |rpb_countDownTimeInMillis|倒计时的时间|integer|3000(ms)|
 |rpb_progressDirection|外弧扫过的方向|enum[forward(0),reverse(1)]|forward(0)|
 |rpb_autoStart|是否自动开启倒计时|boolean|true|
 |rpb_drawOutsideWrapper|是否绘制外弧wrapper|boolean|false|
-|rpb_outsideWrapperColor|外弧wrapper的颜色|color|Color.GRAY|
+|rpb_outsideWrapperColor|外弧wrapper的颜色|color|#E8E8E8|
 |rpb_supportEndToStart|是否支持反转(true 绘制的progress=progress-360)|boolean|false|
 
 ## 版本
 
-* v1.0.4 增加暂停跟恢复
-* v1.0.5 增加进度的百分比设置、修复设置进度不正确问题
+* v1.0.4 增加暂停跟恢复。
+* v1.0.5 增加进度的百分比设置、修复设置进度不正确问题。
+* v1.1.0 精简代码，不支持向下兼容。
+* v1.1.1 TODO 增加中间区域的更多显示选项，以及添加更多接口。
 
 
 ## 其他
