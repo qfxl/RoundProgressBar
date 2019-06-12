@@ -467,7 +467,6 @@ public class RoundProgressBar extends View {
 
             @Override
             public void onAnimationEnd(Animator animation) {
-                //FIXME invoke twice
                 if (mProgressChangeListener != null) {
                     mProgressChangeListener.onFinish();
                 }
