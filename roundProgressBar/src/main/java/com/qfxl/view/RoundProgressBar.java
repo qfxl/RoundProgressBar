@@ -220,7 +220,7 @@ public class RoundProgressBar extends View {
         outsideWrapperColor = a.getColor(R.styleable.RoundProgressBar_rpb_outsideWrapperColor, Color.parseColor("#E8E8E8"));
         isSupportEts = a.getBoolean(R.styleable.RoundProgressBar_rpb_supportEndToStart, false);
         a.recycle();
-        defaultSpace = strokeWidth;
+        defaultSpace = strokeWidth * 2;
         arcPaint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.DITHER_FLAG);
         arcPaint.setStyle(Paint.Style.STROKE);
 
@@ -334,7 +334,7 @@ public class RoundProgressBar extends View {
      */
     private void drawCenterBackground(Canvas canvas) {
         centerBgPaint.setColor(centerBackground);
-        canvas.drawCircle(arcRect.centerX(), arcRect.centerY(), (arcRect.width() - defaultSpace) / 2, centerBgPaint);
+        canvas.drawCircle(arcRect.centerX(), arcRect.centerY(), (arcRect.width() - (defaultSpace >> 2)) / 2, centerBgPaint);
     }
 
     /**
