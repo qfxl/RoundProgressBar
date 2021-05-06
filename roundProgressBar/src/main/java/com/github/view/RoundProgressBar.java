@@ -46,7 +46,7 @@
  * OTHERWISE, ARISING FROM, OUT OF OR IN ANY WAY CONNECTION WITH THE
  * LICENSED WORK OR THE USE OR OTHER DEALINGS IN THE LICENSED WORK.
  */
-package com.qfxl.view;
+package com.github.view;
 
 import android.animation.Animator;
 import android.animation.ValueAnimator;
@@ -57,10 +57,10 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import android.os.Build;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
@@ -80,11 +80,11 @@ public class RoundProgressBar extends View {
     /**
      * arcRect
      */
-    private RectF arcRect;
+    private final RectF arcRect;
     /**
      * textPaint
      */
-    private Paint textPaint;
+    private final Paint textPaint;
     /**
      * arc StrokeWidth
      */
@@ -104,7 +104,7 @@ public class RoundProgressBar extends View {
     /**
      * center background paint
      */
-    private Paint centerBgPaint;
+    private final Paint centerBgPaint;
     /**
      * center background
      */
@@ -116,7 +116,7 @@ public class RoundProgressBar extends View {
     /**
      * placeHolder if there is none text
      */
-    private String emptyText = "100%";
+    private final String emptyText = "100%";
     /**
      * center textColor
      */
@@ -128,7 +128,7 @@ public class RoundProgressBar extends View {
     /**
      * measure text bounds
      */
-    private Rect textBounds;
+    private final Rect textBounds;
     /**
      * arc start angle default is -90
      */
@@ -148,7 +148,8 @@ public class RoundProgressBar extends View {
     /**
      * direction index
      */
-    private int directionIndex;
+    private final int directionIndex;
+
     private final Direction[] mDirections = {
             Direction.FORWARD,
             Direction.REVERSE
@@ -186,13 +187,28 @@ public class RoundProgressBar extends View {
     /**
      * default space between view to bound
      */
-    private int defaultSpace;
+    private final int defaultSpace;
     /**
      * isSupport end to start, if true progress = progress - 360.
      */
     private boolean isSupportEts;
 
     private long currentTime;
+
+    private boolean isFinished = false;
+    /**
+     * animateEnd is not reliable
+     */
+    private final Runnable animateEndRunnable = new Runnable() {
+        @Override
+        public void run() {
+            isFinished = true;
+            if (animator != null && mProgressChangeListener != null) {
+                Log.i("qfxl", "animate 结束" + RoundProgressBar.this.toString());
+                mProgressChangeListener.onFinish();
+            }
+        }
+    };
 
     public RoundProgressBar(Context context) {
         this(context, null);
@@ -233,7 +249,6 @@ public class RoundProgressBar extends View {
 
         arcRect = new RectF();
         textBounds = new Rect();
-
     }
 
 
@@ -377,7 +392,12 @@ public class RoundProgressBar extends View {
      * start
      */
     public void start() {
-        initAnimator(countDownTimeMillis, mDirection);
+        if (animator != null) {
+            if (animator.isStarted()) {
+                animator.cancel();
+            }
+            animator.start();
+        }
     }
 
     /**
@@ -387,19 +407,18 @@ public class RoundProgressBar extends View {
         if (animator != null) {
             animator.cancel();
         }
+        isFinished = true;
+        removeCallbacks(animateEndRunnable);
     }
 
     /**
      * pause
      */
     public void pause() {
-        if (animator != null) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                animator.pause();
-            } else {
-                currentTime = animator.getCurrentPlayTime();
-                animator.cancel();
-            }
+        if (isStarted()) {
+            currentTime = animator.getCurrentPlayTime();
+            animator.pause();
+            removeCallbacks(animateEndRunnable);
         }
     }
 
@@ -407,12 +426,11 @@ public class RoundProgressBar extends View {
      * resume
      */
     public void resume() {
-        if (animator != null) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                animator.resume();
-            } else {
-                animator.setCurrentPlayTime(currentTime);
-                animator.start();
+        if (isPaused()) {
+            animator.resume();
+            long animatorLeftTime = countDownTimeMillis - currentTime;
+            if (animatorLeftTime > 0) {
+                postDelayed(animateEndRunnable, animatorLeftTime);
             }
         }
     }
@@ -436,9 +454,6 @@ public class RoundProgressBar extends View {
      * @param direction sweep direction
      */
     private void initAnimator(int duration, Direction direction) {
-        if (animator != null && animator.isRunning()) {
-            animator.cancel();
-        }
         int start = 0;
         int end = 360;
         if (direction == Direction.REVERSE) {
@@ -448,7 +463,6 @@ public class RoundProgressBar extends View {
         animator = ValueAnimator.ofInt(start, end).setDuration(duration);
         animator.setRepeatCount(0);
         animator.setInterpolator(new LinearInterpolator());
-        animator.start();
         animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
@@ -467,9 +481,7 @@ public class RoundProgressBar extends View {
 
             @Override
             public void onAnimationEnd(Animator animation) {
-                if (mProgressChangeListener != null) {
-                    mProgressChangeListener.onFinish();
-                }
+
             }
 
             @Override
@@ -482,8 +494,7 @@ public class RoundProgressBar extends View {
 
             }
         });
-
-
+        postDelayed(animateEndRunnable, duration);
     }
 
     /**
@@ -598,6 +609,10 @@ public class RoundProgressBar extends View {
                 progress = 360;
                 break;
         }
+        initAnimator(countDownTimeMillis, mDirection);
+        if (animator != null && animator.isRunning()) {
+            stop();
+        }
         if (isAutoStart) {
             start();
         }
@@ -649,6 +664,22 @@ public class RoundProgressBar extends View {
         isSupportEts = supportEts;
     }
 
+    public boolean isRunning() {
+        return animator != null && animator.isRunning();
+    }
+
+    public boolean isFinished() {
+        return isFinished;
+    }
+
+    public boolean isStarted() {
+        return animator != null && animator.isStarted();
+    }
+
+    public boolean isPaused() {
+        return animator != null && animator.isPaused();
+    }
+
     private float sp2px(float inParam) {
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, inParam, getContext().getResources().getDisplayMetrics());
     }
@@ -671,6 +702,4 @@ public class RoundProgressBar extends View {
          */
         void onProgressChanged(int progress);
     }
-
-
 }

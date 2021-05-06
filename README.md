@@ -1,5 +1,5 @@
 # RoundProgressBar
-Android圆形倒计时控件，采用Canvas加ValueAnimator实现计时效果,可以自定义文字，文字大小，文字颜色，外弧的宽度，颜色，外弧扫过的方向等
+Android circular countdown control, using Canvas plus ValueAnimator to achieve the timing effect, you can customize the text, text size, text color, outer arc width, color, the direction of the outer arc sweep, etc.
 
 [![996.icu](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu) 
 
@@ -7,13 +7,13 @@ Android圆形倒计时控件，采用Canvas加ValueAnimator实现计时效果,�
 
 [![LICENSE](https://img.shields.io/badge/license-Anti%20996-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
 
-## 效果图
+## Example
 
 ![此处输入图片的描述][1]
 
 ## Gradle
 ```groovy
-implementation 'com.qfxl:roundProgressBar:1.1.1'
+
 ```
 
 ## code
@@ -36,7 +36,7 @@ implementation 'com.qfxl:roundProgressBar:1.1.1'
 
 ## layout
 ```xml
-<com.qfxl.view.RoundProgressBar
+<com.github.view.RoundProgressBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="10dp"
@@ -56,7 +56,7 @@ implementation 'com.qfxl:roundProgressBar:1.1.1'
         />
 ```
 
-## 自定义属性
+## Attrs
 
 |属性|属性说明|类型|默认值|
 |:--:|:--:|:--:|:--:|
@@ -74,16 +74,12 @@ implementation 'com.qfxl:roundProgressBar:1.1.1'
 |rpb_outsideWrapperColor|外弧wrapper的颜色|color|#E8E8E8|
 |rpb_supportEndToStart|是否支持反转(true 绘制的progress=progress-360)|boolean|false|
 
-## 版本
-
-* v1.0.4 增加暂停跟恢复。
-* v1.0.5 增加进度的百分比设置、修复设置进度不正确问题。
-* v1.1.0 精简代码，不支持向下兼容。
-* v1.1.1 修复背景绘制半径缺省问题。
+## version
 
 
-## 其他
-### 如何监听
+
+## others
+### progress listener
 
 ```java
         RoundProgressBar mRoundProgressBar = (RoundProgressBar) findViewById(R.id.rpb_1);
@@ -99,28 +95,25 @@ implementation 'com.qfxl:roundProgressBar:1.1.1'
             }
         });
 ```
-### 如何手动开启计时
-```java
-mRoundProgressBar.start();
-```
-### 如何停止
+
+### how to stop
 `倒计时结束自动停止，当然也可以强制停止`
 ```java
 mRoundProgressBar.stop();
 ```
 
-### 如何暂停
+### how to pause
 ```java
 mRoundProgressBar.pause();
 ```
 
-### 如何恢复
+### how to resume 
 ```java
 mRoundProgressBar.resume();
 ```
 
-### 如何设置为百分比计时
+### percentage timer
 
-只需要rpb_centerText为空，则默认开启百分比计时效果
+if 'rpb_centerText' is null or empty, then percentage timer will show
 
   [1]: https://github.com/qfxl/RoundProgressBar/blob/master/gif/demo.gif

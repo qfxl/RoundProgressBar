@@ -7,7 +7,7 @@
     android:gravity="center"
     android:orientation="vertical">
 
-    <com.qfxl.view.RoundProgressBar
+    <com.github.view.RoundProgressBar
         android:id="@+id/rpb_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -27,7 +27,7 @@
         app:rpb_sweepStrokeWidth="2dp" />
 
 
-    <com.qfxl.view.RoundProgressBar
+    <com.github.view.RoundProgressBar
         android:id="@+id/rpb_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -47,7 +47,7 @@
         app:rpb_sweepStrokeWidth="2dp" />
 
 
-    <com.qfxl.view.RoundProgressBar
+    <com.github.view.RoundProgressBar
         android:id="@+id/rpb_3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -67,7 +67,7 @@
         app:rpb_sweepStrokeWidth="2dp" />
 
 
-    <com.qfxl.view.RoundProgressBar
+    <com.github.view.RoundProgressBar
         android:id="@+id/rpb_4"
         android:layout_width="49dp"
         android:layout_height="wrap_content"
@@ -87,7 +87,7 @@
         app:rpb_sweepStrokeColor="@color/colorPrimaryDark"
         app:rpb_sweepStrokeWidth="2dp" />
 
-    <com.qfxl.view.RoundProgressBar
+    <com.github.view.RoundProgressBar
         android:id="@+id/rpb_5"
         android:layout_width="wrap_content"
         android:layout_height="84dp"
@@ -108,7 +108,7 @@
         app:rpb_sweepStrokeWidth="4dp" />
 
 
-    <com.qfxl.view.RoundProgressBar
+    <com.github.view.RoundProgressBar
         android:id="@+id/rpb_6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -129,7 +129,7 @@
         app:rpb_sweepStrokeWidth="2dp" />
 
 
-    <com.qfxl.view.RoundProgressBar
+    <com.github.view.RoundProgressBar
         android:id="@+id/rpb_7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -147,7 +147,7 @@
         app:rpb_sweepStartAngle="-90"
         app:rpb_sweepStrokeWidth="2dp" />
 
-    <com.qfxl.view.RoundProgressBar
+    <com.github.view.RoundProgressBar
         android:id="@+id/rpb_temp"
         android:layout_width="wrap_content"
         android:layout_height="84dp"
@@ -163,6 +163,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:rpb_centerText="清风徐来"
+        app:rpb_autoStart="false"
         app:rpb_countDownTimeInMillis="8000" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 

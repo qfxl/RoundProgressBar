@@ -1,94 +1,24 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
-apply plugin: 'com.jfrog.bintray'
-
-version = "1.1.1"
-
+group='com.github.qfxl'
 android {
-    compileSdkVersion 28
+    compileSdkVersion 30
 
     defaultConfig {
-        minSdkVersion 14
+        minSdkVersion 19
         versionCode 1
         versionName "1.0"
     }
-
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 }
+
 allprojects {
     tasks.withType(Javadoc) {
         options {
             encoding "UTF-8"
         }
-    }
-}
-def siteUrl = "https://github.com/qfxl/RoundProgressBar"
-def gitUrl = "https://github.com/qfxl/RoundProgressBar.git"
-
-group = "com.qfxl"
-
-install {
-    repositories.mavenInstaller {
-        // This generates POM.xml with proper paramters
-        pom.project {
-            packaging 'aar'
-
-            // Add your description here
-            name 'RoundProgressBar'
-            url siteUrl
-
-            // Set your license
-            licenses {
-                license {
-                    name 'The Apache Software License, Version 2.0'
-                    url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-                }
-            }
-
-            developers {
-                developer {
-                    id 'qfxl'
-                    name 'xuyonghong'
-                    email 'xuyonghong0822@gmail.com'
-                }
-            }
-
-            scm {
-                connection gitUrl
-                developerConnection gitUrl
-                url siteUrl
-            }
-        }
-    }
-}
-
-task sourcesJar(type: Jar) {
-    from android.sourceSets.main.java.sourceFiles
-    classifier = 'sources'
-}
-
-artifacts {
-    archives sourcesJar
-}
-
-Properties properties = new Properties()
-properties.load(project.rootProject.file('local.properties').newDataInputStream())
-
-bintray {
-    user = properties.getProperty("bintray.user")
-    key = properties.getProperty("bintray.apikey")
-
-    configurations = ['archives']
-
-    pkg {
-        repo = "maven"
-        name = "RoundProgressBar"
-        websiteUrl = siteUrl
-        vcsUrl = gitUrl
-        licenses = ["Apache-2.0"]
-        publish = true
     }
 }
