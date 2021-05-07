@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 30
 
     defaultConfig {
         applicationId "com.qfxl.sample"
         minSdkVersion 19
-        targetSdkVersion 28
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
     }
@@ -23,5 +23,5 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    implementation project(':roundProgressBar')
+    implementation 'com.github.qfxl:RoundProgressBar:1.0.0'
 }

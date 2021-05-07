@@ -12,10 +12,21 @@ Android circular countdown control, using Canvas plus ValueAnimator to achieve t
 ![此处输入图片的描述][1]
 
 ## Gradle
-```groovy
 
+```groovy
+allprojects {
+	repositories {
+		...
+		maven { url 'https://jitpack.io' }
+	}
+}
 ```
 
+```
+dependencies {
+    implementation 'com.github.qfxl:RoundProgressBar:1.0.0'
+}
+```
 ## code
 ```java
         mRoundProgressBar.setCenterTextSize(40);
@@ -58,25 +69,25 @@ Android circular countdown control, using Canvas plus ValueAnimator to achieve t
 
 ## Attrs
 
-|属性|属性说明|类型|默认值|
+|attr|attr description|type|default|
 |:--:|:--:|:--:|:--:|
-|rpb_sweepStrokeWidth|外弧线的宽度|dimension|2dp|
-|rpb_sweepStrokeColor|外弧线的颜色|color|Color.BLACK|
-|rpb_sweepStartAngle|外弧线的起始扫描角度|integer|-90|
-|rpb_centerText|中间文本|string|-|
-|rpb_centerTextSize|中间文本的文字大小|dimension|12sp|
-|rpb_centerTextColor|中间文本的文字颜色|color|Color.WHITE|
-|rpb_centerBackgroundColor|中间区域的背景色|color|#808080|
-|rpb_countDownTimeInMillis|倒计时的时间|integer|3000(ms)|
-|rpb_progressDirection|外弧扫过的方向|enum[forward(0),reverse(1)]|forward(0)|
-|rpb_autoStart|是否自动开启倒计时|boolean|true|
-|rpb_drawOutsideWrapper|是否绘制外弧wrapper|boolean|false|
-|rpb_outsideWrapperColor|外弧wrapper的颜色|color|#E8E8E8|
+|rpb_sweepStrokeWidth|外弧线的宽度(The width of the outer arc)|dimension|2dp|
+|rpb_sweepStrokeColor|外弧线的颜色(Color of outer arc)|color|Color.BLACK|
+|rpb_sweepStartAngle|外弧线的起始扫描角度(The starting sweep angle of the outer arc)|integer|-90|
+|rpb_centerText|中间文本(Center text)|string|-|
+|rpb_centerTextSize|中间文本的文字大小(Center textSize)|dimension|12sp|
+|rpb_centerTextColor|中间文本的文字颜色(Center textCOlor)|color|Color.WHITE|
+|rpb_centerBackgroundColor|中间区域的背景色(The background color of the center area)|color|#808080|
+|rpb_countDownTimeInMillis|倒计时的时间(Countdown time)|integer|3000(ms)|
+|rpb_progressDirection|外弧扫过的方向(The direction the outer arc sweeps)|enum[forward(0),reverse(1)]|forward(0)|
+|rpb_autoStart|是否自动开启倒计时(Auto start)|boolean|true|
+|rpb_drawOutsideWrapper|是否绘制外弧wrapper(Whether to draw the outer arc wrapper)|boolean|false|
+|rpb_outsideWrapperColor|外弧wrapper的颜色(The color of the outer arc wrapper)|color|#E8E8E8|
 |rpb_supportEndToStart|是否支持反转(true 绘制的progress=progress-360)|boolean|false|
 
 ## version
 
-
+* v1.0.0 move repository to Jitpack, Jcenter no longer supported.
 
 ## others
 ### progress listener
