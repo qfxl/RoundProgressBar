@@ -108,7 +108,7 @@ dependencies {
 ```
 
 ### how to stop
-`倒计时结束自动停止，当然也可以强制停止`
+`Stop automatically at the end of the countdown, of course, it can also be forced to stop.`
 ```java
 mRoundProgressBar.stop();
 ```
