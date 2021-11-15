@@ -24,7 +24,7 @@ allprojects {
 
 ```
 dependencies {
-    implementation 'com.github.qfxl:RoundProgressBar:1.0.0'
+    implementation 'com.github.qfxl:RoundProgressBar:1.0.1'
 }
 ```
 ## code
